@@ -1,0 +1,18 @@
+<h1><%= @map.name %></h1>
+
+<h1>Easter Egg</h1>
+<% @map.ee.each do |item| %>
+  <h4><%= link_to item.name, tutorial_steps_path(@map.name, "ee", item.id)%></h4>
+<% end %>
+<h1>Wonder Weapon</h1>
+<% @map.ww.each do |item| %>
+  <h4><%= link_to item.name, tutorial_steps_path(@map.name, "ww", item.id)%></h4>
+<% end %>
+<h1>Upgrade Wonder Weapon</h1>
+<% @map.uww.each do |item| %>
+  <h4><%= link_to item.name, tutorial_steps_path(@map.name, "uww", item.id)%></h4>
+<% end %>
+<h1>Extras</h1>
+<% @map.extras.each do |item| %>
+  <h4><%= link_to item.name, tutorial_steps_path(@map.name, "extras", item.id)%></h4>
+<% end %>

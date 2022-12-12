@@ -1,0 +1,10 @@
+<h1><%= @subitems.name %></h1>
+<ul>
+  <% @subitems.steps.each do |step| %>
+    <% cache step do %>
+    <li>
+      <%= render "tutorialstep", step: step %>
+    </li>
+  <% end %>
+  <% end %>
+</ul>
