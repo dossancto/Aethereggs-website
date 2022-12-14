@@ -1,5 +1,13 @@
-<% if step.start_with?("$file") %>
-  <img src="<%= step.gsub("$file:", "") %>" alt="">
-<% else %>
-  <i><%= step %></i>
-<% end %>
+<ul>
+  <% steps.steps.each do |step| %>
+    <li class="tutorial-step">
+      <% if step.start_with?("$file") %>
+        <div class="tutorial-center-image">
+          <img src="<%= step.gsub("$file:", "") %>" alt="">
+        </div>
+      <% else %>
+        <%= step %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

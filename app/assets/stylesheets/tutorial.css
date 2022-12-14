@@ -1,0 +1,15 @@
+.tutorial-step{
+  margin-top: 50px;
+  list-style: none;
+}
+
+.tutorial-center-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tutorial-center-image img{
+  max-width: 75%;
+}

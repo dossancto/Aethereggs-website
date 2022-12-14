@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+@import './app.css';
+@import './tutorial.css';
+
+
+img{
+  max-width: 100%;
+}
