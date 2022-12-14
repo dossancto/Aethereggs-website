@@ -15,21 +15,34 @@ class TutorialMapsController < ApplicationController
   def map
     mapname = params[:mapname]
     url = "/tutoriais/#{mapname}"
-
     result_json = get_request(url)
-
     return unless result_json
 
-    map = Map.new('', '', [], [], [], [])
+    @map = Map.new(
+      '',
+      result_json['name'],
+      parse_item(result_json['ee']),
+      parse_item(result_json['ww']),
+      parse_item(result_json['uww']),
+      parse_item(result_json['extras'])
+    )
+  end
 
-    map.name = result_json['name']
+  def edit
+    mapname = params[:mapname]
+    tipo = params[:type]
+    id = params[:id]
 
-    map.ee = parse_item(result_json['ee'])
-    map.ww = parse_item(result_json['ww'])
-    map.uww = parse_item(result_json['uww'])
-    map.extras = parse_item(result_json['extras'])
+    is_dig = /\A[-+]?\d+\z/ === id
 
-    @map = map
+    render 'notfound' unless is_dig
+
+    url = "/tutoriais/#{mapname}/#{tipo}"
+
+    result_json = get_request(url)
+    return unless result_json
+
+    @subitems = parse_item(result_json)[id.to_i]
   end
 
   def steps

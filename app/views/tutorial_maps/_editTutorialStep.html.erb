@@ -1,0 +1,17 @@
+<ul>
+  <% steps.steps.each do |step| %>
+    <li class="tutorial-step">
+      <% if step.start_with?("$file") %>
+        <div class="tutorial-center-image">
+          <img src="<%= clear_img_url step %>" alt="">
+        </div>
+      <% else %>
+        <p>
+        <div contenteditable>
+          <%= step %>
+        </div>
+        </p>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

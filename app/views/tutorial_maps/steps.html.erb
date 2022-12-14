@@ -1,2 +1,7 @@
 <h1><%= @subitems.name %></h1>
 <%= render "tutorialstep", steps: @subitems %>
+<div class="tutorial-footer">
+  <ul>
+    <li> <%= link_to "Edit this Tutorial", "#{@subitems.id}/edit"%> </li>
+  </ul>
+</div>
