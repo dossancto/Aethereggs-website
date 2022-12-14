@@ -3,7 +3,7 @@
     <li class="tutorial-step">
       <% if step.start_with?("$file") %>
         <div class="tutorial-center-image">
-          <img src="<%= step.gsub("$file:", "") %>" alt="">
+          <img src="<%= clear_img_url step %>" alt="">
         </div>
       <% else %>
         <%= step %>
