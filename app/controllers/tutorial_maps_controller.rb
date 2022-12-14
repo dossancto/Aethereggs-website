@@ -6,16 +6,19 @@ class TutorialMapsController < ApplicationController
 
   def index
     url = '/allmaps/names'
-    response = HTTParty.get(API_URL + url)
-    result_json = JSON.parse(response.body)
+
+    result_json = get_request(url)
+
     @mapnames = result_json
   end
 
   def map
     mapname = params[:mapname]
-    url = "#{API_URL}/tutoriais/#{mapname}"
-    response = HTTParty.get(url)
-    result_json = JSON.parse(response.body)
+    url = "/tutoriais/#{mapname}"
+
+    result_json = get_request(url)
+
+    return unless result_json
 
     map = Map.new('', '', [], [], [], [])
 
@@ -38,15 +41,27 @@ class TutorialMapsController < ApplicationController
 
     render 'notfound' unless is_dig
 
-    url = "#{API_URL}/tutoriais/#{mapname}/#{tipo}"
+    url = "/tutoriais/#{mapname}/#{tipo}"
 
-    response = HTTParty.get(url)
-    result_json = JSON.parse(response.body)
+    result_json = get_request(url)
+    return unless result_json
 
     @subitems = parse_item(result_json)[id.to_i]
   end
 
   private
+
+  def get_request(url)
+    response = HTTParty.get(API_URL + url)
+
+    JSON.parse(response.body)
+  rescue Errno::ECONNREFUSED
+    render 'apiError'
+    false
+  rescue URI::InvalidURIError
+    render 'notfound'
+    false
+  end
 
   def parse_item(result_json)
     i = -1
