@@ -1,6 +1,9 @@
 class TutorialMapsController < ApplicationController
   before_action except: :public
-  caches_action :index, layout: true, expires_in: 5.minutes
+  caches_action :index, layout: true, expires_in: 3.hours
+  caches_action :map, layout: true, expires_in: 3.hours
+  caches_action :edit, layout: true, expires_in: 3.hours
+  caches_action :steps, layout: true, expires_in: 3.hours
 
   API_URL = ENV['API_URL']
 
