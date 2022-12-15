@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: mysite
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: API_URL
+      - key: 8b8f97d14f9dc29a1365858578f69f8b
+        sync: false
