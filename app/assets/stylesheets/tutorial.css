@@ -42,9 +42,34 @@ div[contenteditable]{
     padding: 10px 30px;
     border-radius: 15px;
     outline: none;
+    cursor: pointer;
     transition: .5s;
 }
 
 div[contenteditable]:focus{
     border: 1px solid grey;
+    cursor: text;
 }
+
+div[contenteditable]:empty{
+    border: 1px solid rgba(128 , 128, 128, 0.5);
+}
+
+div[contenteditable]::before{
+  content: 'Blocos vazios são descartados';
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transform: translateY(0);
+  color: red;
+  transition: 0.5s;
+}
+
+div[contenteditable]:empty::before{
+  content: 'Blocos vazios são descartados';
+  position: absolute;
+  transform: translateY(-40px);
+  visibility: hidden;
+  opacity: 1;
+}
+
